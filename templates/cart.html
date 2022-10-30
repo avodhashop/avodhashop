@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Shopping Cart Checkout Widget</title>
+  <link rel="stylesheet" href="{% static 'ct/css/style.css' %}">
+  <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+</head>
+<body>
+  <div class="cart">
+    <div class="cart-top">
+      <h2 class="cart-top-title">Cart</h2>
+      <!-- <div class="cart-top-info">3 items</div> -->
+    </div>
+   
+    <ul>
+      <li class="cart-item ">
+
+                 
+         {% for i in ci %}
+         
+        <!-- <span class="cart-item-pic"> 
+          <img class= "img fluid"src="{{i.prodt.img.url}}" alt="{{i.prodt.name}}" style="height:100 ;width:100;">
+        </span>
+        <div class="description">
+       <span>{{i.prodt.name}}</span>
+        <span>{{i.prodt.id}}</span>
+        <span>{{i.prodt.stock}}</span>>
+        <span>price={{i.prodt.price}}rs</span>
+      </div> -->
+      <div class="row border-top border-bottom">
+
+                        <div class="row main align-items-center">
+                        
+                            <div class="col-2">
+                            <a href="{{i.prodt.get_url}}"><img class= "img fluid"src="{{i.prodt.img.url}}" alt="{{i.prodt.name}}" style="height: 100px;;width:100;"></a>
+                          </div>
+                            <div class="col">
+                              <a href="{% url 'remove' i.prodt.id %}"> <button style="font-size:12px">TRASH <i class="fa fa-trash-o"></i></button></a><p><div class="row ">Name:{{i.prodt.name}}</div></p>
+                                
+                                <p><div class="row">Id:{{i.prodt.id}}</div></p>
+                                <div class="row">Price:{{i.prodt.price}}rs</div>
+                                <div class="row">Stock:{{i.prodt.stock}}</div>
+                                <!-- <div class="col">Price{{i.prodt.price}}rs<span class="close">&#10005;</span></div> -->
+
+
+
+                            </div>
+                            <div class="col">
+                                <a href="{% url 'cart_decrement' i.prodt.id %}"><i class="fa fa-minus" style="font: size 10px;"></i></a><a href="#" class="border">&nbsp;{{i.quan}}</a><a href="{% url 'addcart' i.prodt.id %}">&nbsp;<i class="fa fa-plus" style="font-size:10px"></i></a>
+                            </div>
+                            <div class="col">Total:&nbsp;{{i.total}}rs;</span></div>
+                        </div>
+                    </div> 
+        {% endfor %}
+      </li>
+
+    </ul>
+
+    <div class="cart-bottom">
+      
+      <!-- <a href="#" class="cart-button">Continue</a> -->
+    <div class="col">Total Price:{{t}}&nbsp:rs;</span></div>
+    </div>
+  </div>
+
+
+</body>
+</html>
+{% endblock %}
